@@ -1,16 +1,18 @@
+import { useState } from "react";
 import InputText from "./components";
 import useForm from "./hooks/useForm";
 
 function App() {
-  const formState = {
-    firstName: "",
-    lastName: "",
-    email: "",
-    age: "",
-  };
+  const formState = [
+    {
+      label: "firstName",
+      value: null,
+      error: "",
+    },
+  ];
 
-  const { form, validate, error, setForm, setError, checkValidHandler } =
-    useForm(formState);
+  const { form, validate, setForm, checkValidHandler } = useForm(formState);
+  const [error, setError] = useState("");
 
   const submitFormHandler = (e: { preventDefault: () => void }) => {
     e.preventDefault();
