@@ -27,7 +27,7 @@ const useForm = (formState: any) => {
     switchValid();
 
     return () => switchValid();
-  }, [validate]);
+  }, [validate, switchValid]);
 
   return {
     form,
