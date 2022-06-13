@@ -8,7 +8,6 @@ const useForm = (formState: any) => {
 
   const [form, setForm] = useState(formState);
   const [validate, setValidate] = useState(formValidation);
-  const [error, setError] = useState("");
 
   const checkValidHandler = () => {
     Object.entries(form).map((key) => {
@@ -33,10 +32,8 @@ const useForm = (formState: any) => {
   return {
     form,
     validate,
-    error,
     setValidate,
     setForm,
-    setError,
     checkValidHandler,
   };
 };

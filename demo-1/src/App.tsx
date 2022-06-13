@@ -1,3 +1,4 @@
+import { useState } from "react";
 import InputText from "./components";
 import useForm from "./hooks/useForm";
 
@@ -9,8 +10,9 @@ function App() {
     age: "",
   };
 
-  const { form, validate, error, setForm, setError, checkValidHandler } =
+  const { form, validate, setForm, checkValidHandler } =
     useForm(formState);
+    const [error, setError] = useState("");
 
   const submitFormHandler = (e: { preventDefault: () => void }) => {
     e.preventDefault();
