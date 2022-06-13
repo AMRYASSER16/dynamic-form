@@ -10,8 +10,8 @@ const useForm = (formState: any) => {
   const [validate, setValidate] = useState(formValidation);
 
   const checkValidHandler = () => {
-    Object.entries(form).map((key) => {
-      if (key[1] !== "") {
+    form.map((f: any) => {
+      if (f.value !== "") {
         setValidate({ ...validate, valid: true });
       } else {
         setValidate({ ...validate, notValid: true });

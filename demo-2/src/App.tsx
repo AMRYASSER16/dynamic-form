@@ -5,11 +5,18 @@ import useForm from "./hooks/useForm";
 function App() {
   const formState = [
     {
+      id: 0,
       label: "firstName",
-      value: null,
+      value: "",
       error: "",
     },
-  ];
+    {
+      id: 1,
+      label: "lastName",
+      value: "",
+      error: "",
+    },
+  ]; 
 
   const { form, validate, setForm, checkValidHandler } = useForm(formState);
   const [error, setError] = useState("");
@@ -27,14 +34,16 @@ function App() {
 
   return (
     <form onSubmit={(e) => submitFormHandler(e)}>
-      {Object.entries(form).map((key, value) => (
+      {form.map((f: any) => (
         <InputText
-          key={value}
-          label={key[0]}
-          value={`${key[1]}`}
-          onChange={(e) => setForm({ ...form, [key[0]]: e.target.value })}
-          valid={key[1] === "" ? validate.notValid : validate.valid}
-          errorMsg={error}
+          key={f.id}
+          label={f.label}
+          value={f.value}
+          onChange={(e) => {
+            console.log(f)
+          }}
+          valid={f.value === "" ? validate.notValid : validate.valid}
+          errorMsg={f.error}
           classes={"class"}
         />
       ))}
