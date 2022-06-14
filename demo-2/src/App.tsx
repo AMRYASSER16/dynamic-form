@@ -3,6 +3,13 @@ import InputText from "./components";
 import useForm from "./hooks/useForm";
 
 function App() {
+  interface formStateT {
+    id: number;
+    label: string;
+    value: any;
+    error: string;
+  }
+
   const formState = [
     {
       id: 0,
@@ -16,7 +23,7 @@ function App() {
       value: "",
       error: "",
     },
-  ]; 
+  ];
 
   const { form, validate, setForm, checkValidHandler } = useForm(formState);
   const [error, setError] = useState("");
@@ -34,16 +41,17 @@ function App() {
 
   return (
     <form onSubmit={(e) => submitFormHandler(e)}>
-      {form.map((f: any) => (
+      {form.map((f: formStateT) => (
         <InputText
           key={f.id}
           label={f.label}
           value={f.value}
           onChange={(e) => {
-            console.log(f)
+            f.value = e.target.value;
+            setForm([...form]);
           }}
           valid={f.value === "" ? validate.notValid : validate.valid}
-          errorMsg={f.error}
+          errorMsg={error === "" ? f.error : error}
           classes={"class"}
         />
       ))}
