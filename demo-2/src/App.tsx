@@ -36,6 +36,12 @@ function App() {
     // write form logic
     // setError() will be used to take the error message
 
+    form.map((f: formStateT) => {
+      if (f.value === "") {
+        setError("This field is required !!");
+      }
+    });
+
     console.log(form);
   };
 
@@ -46,6 +52,7 @@ function App() {
           key={f.id}
           label={f.label}
           value={f.value}
+          required={true}
           onChange={(e) => {
             f.value = e.target.value;
             setForm([...form]);

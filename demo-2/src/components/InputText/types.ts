@@ -7,5 +7,6 @@ export type types = {
   errorMsg: string;
   valid?: boolean;
   classes?: string;
+  required: boolean;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };

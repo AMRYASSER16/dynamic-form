@@ -11,13 +11,15 @@ const InputTextC = (props: types) => {
     minLength,
     maxLength,
     onChange,
+    required,
   } = props;
 
   return (
     <div className={`InputText_C ${classes} ${valid ? "p-error" : ""}`}>
       {label && (
         <div className="label">
-          <label>{label} *</label>
+          <label>{label}</label>
+          {required && <span> * </span>}
         </div>
       )}
       <InputText
