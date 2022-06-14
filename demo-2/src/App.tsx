@@ -38,6 +38,7 @@ function App() {
 
     form.map((f: formStateT) => {
       if (f.value === "") setError("This field is required !!");
+      else setError("");
     });
 
     console.log(form);
