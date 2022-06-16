@@ -25,7 +25,7 @@ function App() {
     },
   ];
 
-  const { form, validate, setForm, checkValidHandler } = useForm(formState);
+  const { form, validate, checkValidHandler, onChangeHandler } = useForm(formState);
   const [error, setError] = useState("");
 
   const submitFormHandler = (e: { preventDefault: () => void }) => {
@@ -46,16 +46,13 @@ function App() {
 
   return (
     <form onSubmit={(e) => submitFormHandler(e)}>
-      {form.map((f: formStateT) => (
+      {form.map((f: formStateT, index: number) => (
         <InputText
           key={f.id}
           label={f.label}
           value={f.value}
           required={true}
-          onChange={(e) => {
-            f.value = e.target.value;
-            setForm([...form]);
-          }}
+          onChange={onChangeHandler(index)}
           valid={f.value === "" ? validate.notValid : validate.valid}
           errorMsg={error === "" ? f.error : error}
           classes={"class"}

@@ -19,6 +19,13 @@ const useForm = (formState: any) => {
     });
   };
 
+  const onChangeHandler = (index: number) => (e: any) => {
+    const { value } = e.target;
+    setForm((form: any) =>
+      form.map((el: any, i: any) => (i === index ? { ...el, value } : el))
+    );
+  };
+
   const switchValid = () => {
     if (validate.valid) setValidate({ ...validate, valid: false });
   };
@@ -35,6 +42,7 @@ const useForm = (formState: any) => {
     setValidate,
     setForm,
     checkValidHandler,
+    onChangeHandler
   };
 };
 
